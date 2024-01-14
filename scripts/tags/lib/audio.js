@@ -9,32 +9,20 @@
 'use strict';
 
 module.exports = ctx => function(args) {
-  args = ctx.args.map(args, ['type', 'netease', 'playlist', 'autoplay'], ['src'])
+  args = ctx.args.map(args, ['type', 'netease', 'autoplay'], ['src'])
   if (args.netease) {
     return `
     <div class="tag-plugin audio">
-    <iframe src="//music.163.com/outchain/player?type=2&id=${args.netease}&auto=${args.autoplay}&height=66" frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=86>
+    <iframe src="//music.163.com/outchain/player?type=${args.type || '2'}&id=${args.netease}&auto=${args.autoplay == 'true' ? '1' : '0'}&height=32" frameborder="no" border="0" marginwidth="0" marginheight="0" width=288px height=52>
     </iframe>
     </div>
     `
   }
-  if (args.playlist) {
-    return `
-    <div class="tag-plugin audio">
-    <iframe src="//music.163.com/outchain/player?type=0&id=${args.playlist}&auto=${args.autoplay}&height=430" frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=450>
-    </iframe>
-    </div>
-    `
-  }
-  if (args.type == null) {
-    args.type = 'audio/mp3'
-    const autoplayAttr = args.autoplay ? 'autoplay' : ''
-    return `
-    <div class="tag-plugin audio">
-    <audio controls preload ${autoplayAttr} > 
-    <source src="${args.src}" type="${args.type}">Your browser does not support the audio tag.
-    </audio>
-    </div>
-    `
-  }
+  return `
+  <div class="tag-plugin audio">
+  <audio controls preload>
+  <source src="${args.src}" type="${args.type || 'audio/mp3'}">Your browser does not support the audio tag.
+  </audio>
+  </div>
+  `
 }

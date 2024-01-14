@@ -9,24 +9,23 @@
 'use strict';
 
 module.exports = ctx => function(args) {
-  args = ctx.args.map(args, ['type', 'bilibili', 'ratio', 'autoplay'], ['src'])
+  args = ctx.args.map(args, ['type', 'bilibili', 'ratio', 'width', 'autoplay'], ['src'])
+  if (args.width == null) {
+    args.width = '100%'
+  }
   if (args.bilibili) {
     return `
-    <div class="tag-plugin video" style="aspect-ratio:${args.ratio || 16/9}">
-    <iframe src="https://player.bilibili.com/player.html?bvid=${args.bilibili}&autoplay=${args.autoplay}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
+    <div class="tag-plugin video" style="aspect-ratio:${args.ratio || 16/9};max-width:${args.width};">
+    <iframe src="https://player.bilibili.com/player.html?bvid=${args.bilibili}&autoplay=${args.autoplay || 'false'}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
     </iframe>
     </div>
     `
   }
-  if (args.type == null) {
-    args.type = 'video/mp4'
-    const autoplayAttr = args.autoplay ? 'autoplay' : ''
-    return `
-    <div class="tag-plugin video">
-    <video controls preload ${autoplayAttr} >
-    <source src="${args.src}" type="${args.type}">Your browser does not support the video tag.
-    </video>
-    </div>
-    `
-  }
+  return `
+  <div class="tag-plugin video" style="max-width:${args.width};">
+  <video controls preload>
+  <source src="${args.src}" type="${args.type || 'video/mp4'}">Your browser does not support the video tag.
+  </video>
+  </div>
+  `
 }

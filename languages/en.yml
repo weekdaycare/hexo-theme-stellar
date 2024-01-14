@@ -2,6 +2,7 @@ btn:
   home: Home
   blog: Blog
   wiki: Wiki
+  topic: Topic
   recent_publish: Recent
   all_wiki: All Products
   category: Category
