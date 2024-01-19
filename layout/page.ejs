@@ -53,6 +53,9 @@ function layoutDiv() {
   if (page.content && page.content.length > 0) {
     el += page.content
   }
+  if (isUsingTianliGPT) {
+    el += partial('_partial/plugins/ai/tianli_gpt')
+  }
   if (layout === 'post') {
     el += partial('_partial/main/article/article_footer')
   }
