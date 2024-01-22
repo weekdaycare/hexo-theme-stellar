@@ -28,9 +28,7 @@
   trans1 all
   overflow: hidden
   z-index: 0
-  @supports ((-webkit-backdrop-filter:blur(var(--blur-px))) or (backdrop-filter:blur(var(--blur-px))))
-    backdrop-filter: saturate(240%) blur(var(--blur-px))
-    -webkit-backdrop-filter: saturate(240%) blur(var(--blur-px))
+  background: var(--alpha20)
   position: relative
   .excerpt
     margin: 1rem 0
