@@ -17,6 +17,12 @@
   flex-grow: 1
   width: 320px
   max-width: var(--width-main)
+  @supports ((-webkit-backdrop-filter:blur(var(--blur-px))) or (backdrop-filter:blur(var(--blur-px))))
+    background: var(--blur-bg)
+    border-radius: $border-bar
+    margin: 0.5rem
+    backdrop-filter: saturate(240%) blur(var(--blur-px))
+    -webkit-backdrop-filter: saturate(240%) blur(var(--blur-px))
 
 
 // 手机布局

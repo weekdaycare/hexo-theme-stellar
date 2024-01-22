@@ -34,29 +34,28 @@
       right: .5rem
     &:only-child
       &.active
-        background: var(--alpha50)
+        background: var(--alpha60)
       &:hover
-        background: var(--alpha100)
+        background: var(--alpha60)
     &:hover
-      background: var(--alpha100)
+      background: var(--alpha60)
 
 
 // 当前分页链接
 .widget-wrapper.toc.multi .doc-tree.active
   a.doc-tree-link
-    background: var(--alpha100)
+    background: var(--alpha50)
     font-weight: 500
     &:hover:after
       content: none
   >.toc
     padding: 4px 10px
-    border: 1px solid var(--alpha50)
     background: var(--alpha20)
     border-bottom-left-radius: $border-card
     border-bottom-right-radius: $border-card
     a.toc-link:before
       left: -7px
       width: 4px
-      background: var(--text-p2)
+      background: var(--text-p1)
     a.toc-link:hover
-      background: var(--alpha100)
+      background: var(--alpha60)

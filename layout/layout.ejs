@@ -28,6 +28,7 @@ if (page.indent != null) {
 var html = `<!DOCTYPE html>`
 html += `<html lang="${page.lang}">`
   html += partial('_partial/head')
+  html += `<body style="background-image: url('https://bu.dusays.com/2024/01/22/65ae3b790664d.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover; background-position: center;">`
   html += `<body>`
     html += partial('_partial/cover/index')
     html += `<div class="l_body ${page_type} ${article_type}" id="start" layout="${page.layout}" ${indent ? 'text-indent' : ''}>`
