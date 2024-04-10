@@ -515,9 +515,10 @@ plugins:
     toast: 复制成功
 
   expire: # 文章时效提醒
-    enable: # true
-    field: post # all, post, wiki, topic
-    expiredDays: 45 # 文章过期时间
+    enable: #true
+    field: wiki # post, wiki, all 
+    color: orange # red, orange...
+    expiredDays: 45
   
   # 赫蹏 (Heti) - 专为中文网页内容设计的排版样式增强
   # https://github.com/sivan/heti
