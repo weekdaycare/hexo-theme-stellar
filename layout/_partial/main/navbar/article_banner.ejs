@@ -43,6 +43,9 @@ function layoutBreadcrumb() {
   el += `</div>`
   // 3.left.bottom
   el += partial('dateinfo')
+  if (theme.article.wordcount.enable) {
+    el += partial('wordcount')
+  }
   // end 2.left
   el += `</div>`
   // end 1.main

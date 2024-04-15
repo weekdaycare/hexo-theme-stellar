@@ -1,0 +1,24 @@
+<%
+function layoutDiv() {
+  var el = '<div class="flex-row" id="post-wordcount">'
+  // 文章字数
+  if (config.symbols_count_time.symbols) {
+    el += `<span class="text word-count">${__("meta.wordcount.count") + __("symbol.colon")}`
+    el += `${symbolsCount(page)} ${__("meta.wordcount.words")}`
+    el += `</span>`
+  }
+  // 分隔符
+  if (config.symbols_count_time.symbols && config.symbols_count_time.time) {
+    el += `<span class="sep"></span>`
+  }
+  // 阅读时长
+  if (config.symbols_count_time.time) {
+    el += `<span class="text read-time">${__("meta.wordcount.read_time") + __("symbol.colon")}`
+    el += `${symbolsTime(page)}`
+    el += `</span>`
+  }
+  el += '</div>'
+  return el
+}
+%>
+<%- layoutDiv() %>
