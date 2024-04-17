@@ -336,6 +336,9 @@ tag_plugins:
   # {% timeline %}
   timeline:
     max-height: 80vh
+  # {% span %}
+  span:
+    default_color: # red, orange, yellow, green, cyan, blue, purple
   # {% mark %}
   mark:
     default_color: yellow # light, dark, red, orange, yellow, green, cyan, blue, purple, warning, error
