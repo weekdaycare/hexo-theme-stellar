@@ -43,5 +43,5 @@ hexo.extend.tag.register('hashtag', require('./lib/hashtag')(hexo))
 hexo.extend.tag.register('okr', require('./lib/okr')(hexo), {ends: true})
 hexo.extend.tag.register('audio', require('./lib/audio')(hexo))
 hexo.extend.tag.register('video', require('./lib/video')(hexo))
-hexo.extend.tag.register('span', require('./lib/span')(hexo))
+hexo.extend.tag.register('p', require('./lib/p')(hexo))
 // others
