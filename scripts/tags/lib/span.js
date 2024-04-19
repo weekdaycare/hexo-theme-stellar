@@ -26,10 +26,10 @@ module.exports = ctx => function(args) {
     }
   }
   var el = ''
-  el += '<p class="tag-plugin colorful p"'
+  el += '<span class="tag-plugin colorful span"'
   el += ' ' + ctx.args.joinTags(args, ['color']).join(' ')
   el += '>'
   el += args.text
-  el += '</p>'
+  el += '</span>'
   return el
 }
