@@ -5,23 +5,18 @@
  * {% coding url [lang:string] [withcss:boolean] %}
  */
 
-'use strict';
+'use strict'
 
 module.exports = ctx => function(args) {
-  args = ctx.args.map(args, ['lang', 'withcss'], ['url']);
-  if (args.url == null) {
-    return '';
-  }
-  const api = ctx.theme.config.tag_plugins.coding?.api;
-  const apiUrl = api.endsWith('/') ? api.slice(0, -1) : api;
-  let fullUrl = `${apiUrl}/api/v1/generate?url=${args.url}`;
-  if (args.lang) {
-    fullUrl += `&lang=${args.lang}`;
-  }
-  if (args.withcss) {
-    fullUrl += `&withcss=${args.withcss}`;
-  } 
-
-  const scriptTag = `<script src="${fullUrl}"></script>`;
-  return scriptTag;
-};
+  args = ctx.args.map(args, ['lang', 'withcss'], ['url'])
+  const api = ctx.theme.config.tag_plugins.coding?.api.replace(/\/$/, '')
+  const css = args.withcss ? args.withcss : true
+  args.withcss = css
+  args.url = api + '/api/v1/generate?url=' + args.url
+  var el = ''
+  el += `<div class="tag-plugin ds-coding"`
+  el += ' ' + ctx.args.joinTags(args, ['url', 'lang', 'withcss']).join(' ')
+  el += '>'
+  el += '</div>'
+  return el
+}
