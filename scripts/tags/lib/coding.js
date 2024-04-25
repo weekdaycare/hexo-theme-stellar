@@ -12,7 +12,7 @@ module.exports = ctx => function(args) {
   if (args.url == null) {
     return '';
   }
-  const api = ctx.theme.config.tag_plugins.code?.api;
+  const api = ctx.theme.config.tag_plugins.coding?.api;
   const apiUrl = api.endsWith('/') ? api.slice(0, -1) : api;
   let fullUrl = `${apiUrl}/api/v1/generate?url=${args.url}`;
   if (args.lang) {
