@@ -19,7 +19,6 @@ utils.jq(() => {
   })
   .then(res => res.json())
   .then(({ data }) => {
-    console.log(data);
     utils.onLoadSuccess(el); // 移除动画
     data.forEach((comment, j) => {
       let commentText = comment.commentText;
