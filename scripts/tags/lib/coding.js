@@ -10,8 +10,9 @@
 module.exports = ctx => function(args) {
   args = ctx.args.map(args, ['lang', 'withcss'], ['url'])
   const api = ctx.theme.config.tag_plugins.coding?.api.replace(/\/$/, '')
-  const css = args.withcss ? args.withcss : true
-  args.withcss = css
+  if (!args.withcss) {
+    args.withcss = 'true'
+  }
   args.url = api + '/api/v1/generate?url=' + args.url
   var el = ''
   el += `<div class="tag-plugin ds-coding"`
