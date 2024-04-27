@@ -341,7 +341,7 @@ tag_plugins:
     max-height: 80vh
   # {% span %}
   span:
-    default_color: # red, orange, yellow, green, cyan, blue, purple
+    default_color: orange # red, orange, yellow, green, cyan, blue, purple
   # {% mark %}
   mark:
     default_color: yellow # light, dark, red, orange, yellow, green, cyan, blue, purple, warning, error
@@ -395,6 +395,8 @@ data_services:
     api: 
   ghinfo:
     js: /js/services/ghinfo.js
+  coding:
+    js: /js/services/coding.js
   # 网格布局类
   sites:
     js: /js/services/sites.js
@@ -409,6 +411,15 @@ data_services:
     js: /js/services/weibo.js
   memos:
     js: /js/services/memos.js
+  # 评论获取类
+  artalk:
+    js: /js/services/artalk_new.js
+  twikoo:
+    js: /js/services/twikoo_new.js
+  waline:
+    js: /js/services/waline_new.js
+  giscus:
+    js: /js/services/giscus_new.js
 
 
 # 扩展插件接入方法：(插件名下面用 #plugin# 代替)
