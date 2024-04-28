@@ -109,4 +109,12 @@ hoverable-card()
   box-shadow: $boxshadow-card
   &:hover
     floatable-float()
-  
+  :root[data-theme="light"] &
+    onlight()
+  :root[data-theme="dark"] &
+    ondark()
+  :root:not([data-theme]) &
+    @media (prefers-color-scheme: light)
+      onlight()
+    @media (prefers-color-scheme: dark)
+      ondark()
