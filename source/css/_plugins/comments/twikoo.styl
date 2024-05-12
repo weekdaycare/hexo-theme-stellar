@@ -4,16 +4,6 @@
 .twikoo svg
   color: var(--text-p1)
 
-.tk-expand 
-  width: 100%
-  cursor: pointer
-  padding: 0.75em
-  text-align: center
-  trans1 background
-  border-radius: $border-card
-  letter-spacing: 5px
-  background: var(--block)
-
 .twikoo 
   .tk-comments > .tk-submit
     overflow: visible !important
@@ -106,6 +96,14 @@
 
     .tk-action-link
       color: var(--text-p2)
+      background: var(--block)
+      border-radius: $border-card
+      padding: 2px 10px 2px 14px
+      &:hover
+        background: var(--card)
+        trans1 background
+      &:first-child
+        display: none
     .tk-row 
       .tk-avatar
         display: none
@@ -139,6 +137,11 @@
       margin-top: .5rem
       padding-bottom: .5rem
     .tk-expand
+      width: auto
+      trans1 background
+      border-radius: $border-card
+      letter-spacing: 5px
+      background: var(--block)
       &:hover
         background-color: var(--card)
 
