@@ -45,4 +45,9 @@ hexo.extend.tag.register('okr', require('./lib/okr')(hexo), {ends: true})
 hexo.extend.tag.register('audio', require('./lib/audio')(hexo))
 hexo.extend.tag.register('video', require('./lib/video')(hexo))
 hexo.extend.tag.register('span', require('./lib/span')(hexo))
+
+// read 阅读类
+hexo.extend.tag.register('reel', require('./lib/read/reel')(hexo), true)
+hexo.extend.tag.register('paper', require('./lib/read/paper')(hexo), true)
+
 // others
