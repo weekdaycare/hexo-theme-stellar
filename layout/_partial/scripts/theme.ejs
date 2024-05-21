@@ -27,30 +27,21 @@
     }
   }
 
-  const switchTheme = () => {
-    // light -> dark -> auto -> light -> ...
-    const currentTheme = document.documentElement.getAttribute('data-theme')
-    let newTheme;
-    switch (currentTheme) {
-      case 'light':
-        newTheme = 'dark'
-        break
-      case 'dark':
-        newTheme = 'auto'
-        break
-      default:
-        newTheme = 'light'
-    }
-    applyTheme(newTheme)
-    window.localStorage.setItem('Stellar.theme', newTheme)
+  const switchTheme = (theme) => {
+    applyTheme(theme)
+    window.localStorage.setItem('Stellar.theme', theme)
 
     const messages = {
       light: `<%- __('message.theme_switched.light') %>`,
       dark: `<%- __('message.theme_switched.dark') %>`,
       auto: `<%- __('message.theme_switched.auto') %>`,
     }
-    hud?.toast?.(messages[newTheme])
+    hud?.toast?.(messages[theme])
   }
+
+  const switchTolight = () => switchTheme('light')
+  const switchTodark = () => switchTheme('dark')
+  const switchTosystem = () => switchTheme('auto')
 
   (() => {
     // Apply user's preferred theme, if any.
