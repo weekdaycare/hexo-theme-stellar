@@ -23,6 +23,7 @@
     button.el-button.tk-cancel.el-button--default.el-button--small
       background: var(--block)
       border-radius: $border-card
+      border: 1px solid var(--block-border)
       color: var(--text-p1)
       &:hover
         background: var(--card)
@@ -36,8 +37,9 @@
     .el-button--primary.is-disabled, .el-button--primary.is-disabled:active, .el-button--primary.is-disabled:focus, .el-button--primary.is-disabled:hover
       background-color: var(--block)
       color: var(--text-meta)
+      border: 1px solid var(--block-border)
     .el-button--primary
-      border-color: var(--text-p1)
+      border: 1px solid var(--block-border)
       color: var(--text)
       border-radius: $border-card
       trans1 all
@@ -52,7 +54,7 @@
     .tk-input 
       .el-textarea__inner
         min-height: 130px !important
-        border: none
+        border: 1px solid var(--block-border)
         border-radius: $border-card
         display: block
         resize: vertical
@@ -77,11 +79,10 @@
       border: none
     .el-input-group--prepend .el-input__inner, .el-input-group__append
       border-radius: $border-card
+      border-left-width: 0 !important
     .el-input--small .el-input__inner
       padding: 8px
       padding-left: 16px
-    .el-input-group--prepend .el-input__inner, .el-input-group__append
-      border-left-width: 0 !important
   
     .tk-meta-input
       position: relative
@@ -90,6 +91,7 @@
       .el-input.el-input--small.el-input-group.el-input-group--prepend
         border-radius: $border-card
         background: var(--block)
+        border: 1px solid var(--block-border)
       .el-input .el-input-group__prepend
         user-select: none
         border-radius: $border-card 0 0 $border-card
@@ -116,7 +118,7 @@
         justify-content: space-around
     .el-button
       background-color: var(--card)
-      border: none
+      border: 1px solid var(--block-border)
     .tk-tag-green, .tk-tag-red
       background-color: var(--theme-link-opa)
       border: none
