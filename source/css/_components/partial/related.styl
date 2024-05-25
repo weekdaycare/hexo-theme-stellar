@@ -1,5 +1,4 @@
 .related-wrap
-  padding: 0 1rem
   margin: 4rem 0
   &:empty
     display: none
@@ -62,9 +61,13 @@ article.md-text.content+.related-wrap
     grid-gap: 16px
     grid-template-columns: repeat(auto-fill, "calc((100% - 1 * %s) / 2)" % 16px)
     .item  
-      border-top: 1px dashed var(--block-border)
-      border-bottom: 1px dashed var(--block-border)
-      padding: 1rem 0
+      border: 1px solid var(--block-border)
+      border-radius: $border-card
+      background: var(--block)
+      trans1 background
+      padding: 1rem
+      &:hover
+        background: var(--card)
     .note
       margin-bottom: 0.75rem
       font-size: $fs-13
@@ -75,8 +78,7 @@ article.md-text.content+.related-wrap
       line-height: 1.2
       color: var(--text-p1)
       font-size: $fsh5
-      &:hover
-        color: $color-hover !important
+
     #next
       text-align: right
 .wiki+.related-wrap#read-next
@@ -88,7 +90,6 @@ article.md-text.content+.related-wrap
 
 
 .related-wrap#comments
-  padding: 0 1rem
   .cmt-title
     p
       margin: 0

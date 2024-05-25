@@ -36,23 +36,19 @@ function layoutDiv() {
     el += `<div class="related-wrap${scrollreveal(' ')}" id="read-next">`
     el += '<section class="body">';
     // prev
-    el += '<div class="item" id="prev">';
     if (prev) {
+      el += '<a class="item" id="prev" href="' + url_for(prev.path) + '">';
       el += '<div class="note">' + title_prev + '</div>';
-      el += '<a href="' + url_for(prev.path) + '">';
       el += prev.title || prev.wiki || date(prev.date, config.date_format);
       el += '</a>';
     }
-    el += '</div>';
     // next
-    el += '<div class="item" id="next">';
     if (next) {
+      el += '<a class="item" id="next" href="' + url_for(next.path) + '">';
       el += '<div class="note">' + title_next + '</div>';
-      el += '<a href="' + url_for(next.path) + '">';
       el += next.title || next.wiki || date(next.date, config.date_format);
       el += '</a>';
     }
-    el += '</div>';
 
     el += '</section>';
     el += '</div>';
