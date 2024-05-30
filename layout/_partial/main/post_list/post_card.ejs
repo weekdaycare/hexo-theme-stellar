@@ -44,6 +44,22 @@ function div_default() {
     }
   }
 
+  // meta
+  el += '<div class="meta cap">';
+  el += '<span class="cap" id="post-meta">';
+  // time
+  el += `<time datetime="${date_xml(post.date)}">${date(post.date, config.date_format)}`
+  // count
+  if (config.symbols_count_time.symbols) {
+    el += `&nbsp;·&nbsp;${symbolsCount(post)}&nbsp;${__("meta.wordcount.words")}`
+  }
+  el += '</time>'
+  el += '</span>'
+  if (post.sticky) {
+    el += `<span class="pin">${icon('default:pin')}</span>`
+  }
+  el += '</div>'
+
   // 标题
   el += `<a class="post-title" href="${url_for(post.link || post.path)}">`;
   el += post.title ? post.title : date(post.date, config.date_format);
@@ -69,10 +85,6 @@ function div_default() {
   // meta
   el += '<div class="meta cap">';
   el += '<span class="cap" id="post-meta">';
-  el += icon('default:calendar')
-  // time
-  el += `<time datetime="${date_xml(post.date)}">${date(post.date, config.date_format)}</time>`
-  el += '</span>';
   // cat
   if (post.categories && post.categories.length > 0) {
     if (post.layout === 'post' && post.categories && post.categories.length > 0) {
@@ -84,15 +96,16 @@ function div_default() {
       }
       if (cats.length > 0) {
         let cat = cats.shift();
-        el += '<span class="cap breadcrumb"' + category_color(cat) + '>';
-        el += icon('default:category')
-        el += `<span>${cat}</span>`
-        el += '</span>';
+        el += `<a class="cap breadcrumb" ${category_color(cat)} href="/categories/${cat}">`;
+        el += `<span>${cat}</span>`;
+        el += '</a>';
       }
     }
   }
-  if (post.sticky) {
-    el += `<span class="pin">${icon('default:pin')}</span>`
+  el += '</span>';
+  // cat tags
+  if (post.tags && post.tags.length > 0) {
+    el += post.tags.map(tag => `<a class="cap tag" href="/tags/${tag.name}">${tag.name}</a>`).join('');
   }
   el += '</div>';
   el += '</article>';
