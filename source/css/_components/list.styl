@@ -6,13 +6,15 @@
 
 .l_main .post-list
   .post-title
+    display: block
     font-weight: 500
     margin: 1.25rem auto .75rem 0
     line-height: 1.2
     font-size: $fsh4
     border-bottom: none
-    color: var(--text)
-    trans1 color
+    color: var(--text-p1)
+    &:hover
+      color: var(--text)
     @media screen and (max-width: $device-mobile)
       font-size: $fsh5
       margin: 0.5rem 0
@@ -25,10 +27,8 @@
   margin: 1rem 0
   border-radius: $border-card
   background: var(--card)
-  hoverable-card()
+  border: 1px solid var(--block-border)
   overflow: hidden
-  z-index: 0
-  
   position: relative
   .excerpt
     margin: 1rem 0
@@ -79,19 +79,17 @@
 // posts
 .post-list .post-card .post-cover
   overflow: hidden
-  width: 'calc(100% + 2 * %s)' % 1rem
   border-radius: 0
-  margin-left: -1rem
-  margin-top: -1rem
-  margin-right: -1rem
-  background: var(--block)
+  position: absolute
+  right: -1em
+  bottom: -25%
   &:not(.lazy)
     trans1: transform 1s
   img
     object-fit: cover
-    width: 100%
+    width: 8em
     border-radius: 0
-    aspect-ratio: hexo-config('article.cover_ratio')
+    opacity: .2
     
 .post-list .post-card.post.photo
   .cover
