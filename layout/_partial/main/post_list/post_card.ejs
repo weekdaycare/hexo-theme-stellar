@@ -96,7 +96,7 @@ function div_default() {
       }
       if (cats.length > 0) {
         let cat = cats.shift();
-        el += `<a class="cap breadcrumb" ${category_color(cat)} href="/categories/${cat}">`;
+        el += `<a class="cap breadcrumb" ${category_color(cat)} href="/categories/${cat}/">`;
         el += `<span>${cat}</span>`;
         el += '</a>';
       }
@@ -105,7 +105,7 @@ function div_default() {
   el += '</span>';
   // cat tags
   if (post.tags && post.tags.length > 0) {
-    el += post.tags.map(tag => `<a class="cap tag" href="/tags/${tag.name}">${tag.name}</a>`).join('');
+    el += post.tags.map(tag => `<a class="cap tag" href="/tags/${tag.name}/">${tag.name}</a>`).join('');
   }
   el += '</div>';
   el += '</article>';
