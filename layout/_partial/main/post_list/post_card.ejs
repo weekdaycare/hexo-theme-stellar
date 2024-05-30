@@ -9,15 +9,10 @@ if (poster) {
   obj.caption = poster.caption;
   obj.color = poster.color;
 }
-
-var el = '';
-el += '<article class="md-text">';
-// 标题
-el += `<a class="post-title" href="${url_for(post.link || post.path)}">`;
-el += post.title ? post.title : date(post.date, config.date_format);
-el += '</a>';
-
 function div_default() {
+  var el = '';
+  el += '<article class="md-text">';
+
   // 封面
   if (obj.image || theme.article.auto_cover) {
     var cover_url;
@@ -48,6 +43,11 @@ function div_default() {
       el += '</div>';
     }
   }
+
+  // 标题
+  el += `<a class="post-title" href="${url_for(post.link || post.path)}">`;
+  el += post.title ? post.title : date(post.date, config.date_format);
+  el += '</a>';
 
   // 摘要
   el += '<div class="excerpt';

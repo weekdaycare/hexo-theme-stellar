@@ -1,14 +1,12 @@
 // list
 .l_main .post-list
   margin: 1rem
-  .post-title:first-child
-    margin-top: .5rem
 
 .l_main .post-list
   .post-title
     display: block
     font-weight: 500
-    margin: 1.25rem auto .75rem 0
+    margin: .5rem auto .75rem 0
     line-height: 1.2
     font-size: $fsh4
     border-bottom: none
@@ -62,10 +60,6 @@
       svg
         color: $c-red
 
-.post-list.post .post-card:hover
-  img
-    transform: scale(1.01)
-
 // common article
 .post-list .md-text
   padding: 1rem
@@ -87,9 +81,10 @@
     trans1: transform 1s
   img
     object-fit: cover
-    width: 8em
+    width: 7em
+    transform: rotate(350deg)
     border-radius: 0
-    opacity: .2
+    opacity: .15
     
 .post-list .post-card.post.photo
   .cover
