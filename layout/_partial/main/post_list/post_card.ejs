@@ -84,7 +84,6 @@ function div_default() {
 
   // meta
   el += '<div class="meta cap">';
-  el += '<span class="cap" id="post-meta">';
   // cat
   if (post.categories && post.categories.length > 0) {
     if (post.layout === 'post' && post.categories && post.categories.length > 0) {
@@ -102,7 +101,6 @@ function div_default() {
       }
     }
   }
-  el += '</span>';
   // cat tags
   if (post.tags && post.tags.length > 0) {
     el += post.tags.map(tag => `<a class="cap tag" href="/tags/${tag.name}/">${tag.name}</a>`).join('');
