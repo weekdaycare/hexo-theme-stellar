@@ -8,11 +8,12 @@
   background: var(--card)
   border-radius: $border-card
   overflow: hidden
-  box-shadow: 0 2px 8px 0px rgba(0, 0, 0, 0.03)
+  border: 1px solid var(--block-border)
   color: var(--text-p3)
   .page-number
     padding: 4px 8px
     border-radius: 8px
+    font-family: $ff-code
     margin: 2px
   a.page-number
     color: var(--text-p3)
@@ -33,7 +34,6 @@
       border-right: 1px dashed var(--block-border)
       background-image: url(hexo-config('style.paginator.prev'))
   .current
-    font-family: $ff-code
     background: var(--block)
   .extend
     padding: 1rem
