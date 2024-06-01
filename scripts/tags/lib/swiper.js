@@ -33,8 +33,8 @@ module.exports = ctx => function(args, content) {
   slide()
   el += '</div>'
   el += '<div class="swiper-pagination"></div>'
-  el += '<div class="swiper-button-prev blur"></div>'
-  el += '<div class="swiper-button-next blur"></div>'
+  el += '<div class="swiper-button-prev"></div>'
+  el += '<div class="swiper-button-next"></div>'
   el += '</div>'
   return el
 }

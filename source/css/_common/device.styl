@@ -13,7 +13,8 @@
   right: 0
   bottom: 2rem
   float: right
-  transform: translateZ(1px)
+  background: var(--card)
+  box-shadow: $boxshadow-button
   z-index: 10
   display: flex
   flex-direction: column
@@ -23,11 +24,7 @@
   @media screen and (min-width: $device-mobile-max)
     margin-right: 2rem
   overflow: hidden
-  --blur-px: 16px
-  --blur-bg: alpha(#fff, .4)
   trans1: all
-  ondark()
-    --blur-bg: alpha(#000, .4)
   :root[data-theme="dark"] &
     ondark()
   :root:not([data-theme]) &
@@ -37,7 +34,7 @@
 // 侧边栏弹出按钮
 .float-panel button
   cursor: pointer
-  color: var(--text)
+  color: var(--text-p2)
   background: none
   padding: 8px
   line-height: 0
@@ -55,9 +52,6 @@
   box-shadow: 0 0 16px 2px rgba(0,0,0,0.2)
 
 .l_body[leftbar] .float-panel button.leftbar-toggle
-  background: var(--alpha100)
-
-.l_body[leftbar] .float-panel button.leftbar-toggle
   color: $color-theme
   border-color: var(--block-border)
   svg g
@@ -70,9 +64,6 @@
 // 侧边栏有内容时才显示弹出按钮
 .l_body .l_right:empty+.float-panel button.rightbar-toggle
   display: none !important
-
-.l_body[rightbar] .float-panel button.rightbar-toggle
-  background: var(--alpha100)
 
 .l_body[rightbar] .float-panel button.rightbar-toggle
   color: $color-theme
