@@ -45,10 +45,10 @@
       trans1 all
       width: 6.25rem
       position: absolute
-      top: -41px
+      top: -40px
       right: 0
       margin-left: 0.5rem!important
-      height: 33px
+      height: 32px
     .el-loading-spinner .path
       stroke: $color-theme
     .tk-input 
@@ -71,18 +71,20 @@
 
     .el-input__inner
       background: var(--block)!important
-      border: none!important
+      border: 1px solid var(--block-border)
+      border-radius: 0 $border-card $border-card 0
+      border-left-width: 0 !important
       color: var(--text-p1)!important
       padding-left: 8px
-    .el-input__inner:focus
-      border: none
+      &:hover, &:focus
+        border: 1px solid var(--block-border)
     .el-input-group__append, .el-input-group__prepend
       background-color: var(--card)
+      background-clip: border-box
       color: var(--text-p1)
-      border: none
-    .el-input-group--prepend .el-input__inner, .el-input-group__append
-      border-radius: $border-card
-      border-left-width: 0 !important
+      border: 1px solid var(--block-border)
+      border-right: none
+      border-radius: $border-card 0 0 $border-card
     .el-input--small .el-input__inner
       padding: 8px
       padding-left: 16px
@@ -91,13 +93,8 @@
       position: relative
       margin-top: 8px
       width: calc(100% - 6.875rem)
-      .el-input.el-input--small.el-input-group.el-input-group--prepend
-        border-radius: $border-card
-        background: var(--block)
-        border: 1px solid var(--block-border)
       .el-input .el-input-group__prepend
         user-select: none
-        border-radius: $border-card 0 0 $border-card
 
     .tk-action-link
       color: var(--text-p2)
@@ -265,11 +262,11 @@
     min-width: 260px
   
   .tk-comments .tk-row-actions-start 
-    top: -167px
+    top: -164px
   
   .twikoo .tk-comments .tk-submit .el-button--primary 
-    height: 116px
-    top: -124px
+    height: 112px
+    top: -120px
   
   .twikoo .el-textarea__inner 
     background: var(--block)!important
