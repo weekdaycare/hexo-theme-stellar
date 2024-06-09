@@ -102,17 +102,7 @@ function div_default() {
   el += '</article>';
   return el;
 }
-function div_photo() {
-  var el = '';
-  el += '<div class="cover">';
-  el += '<img src="' + obj.image + '"/>';
-  el += '</div>';
-  return el;
-}
 function div() {
-  if (obj.image && obj.image.length > 0) {
-    return div_photo();
-  }
   return div_default();
 }
 %>
