@@ -106,33 +106,11 @@ function div_photo() {
   var el = '';
   el += '<div class="cover">';
   el += '<img src="' + obj.image + '"/>';
-  if (obj.headline || obj.topic || obj.caption) {
-    el += '<div class="cover-info"';
-    if (obj.color) {
-      el += 'style="color:' + obj.color + '"';
-    }
-    if (obj.topic) {
-      el += 'position="top">';
-    } else {
-      el += 'position="bottom">';
-    }
-    if (obj.topic) {
-      el += '<div class="cap">' + obj.topic + '</div>';
-    }
-    if (obj.headline) {
-      el += '<div class="title">' + obj.headline + '</div>';
-    }
-    if (obj.caption) {
-      el += '<div class="cap">' + obj.caption + '</div>';
-    }
-    el += '</div>';
-
-  }
   el += '</div>';
   return el;
 }
 function div() {
-  if (obj.image && obj.image.length > 0 && obj.headline != undefined) {
+  if (obj.image && obj.image.length > 0) {
     return div_photo();
   }
   return div_default();

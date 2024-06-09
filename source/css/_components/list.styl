@@ -94,35 +94,6 @@
       width: 100%
       object-fit: cover
       aspect-ratio: hexo-config('article.cover_ratio')
-    .cover-info
-      padding: 1.5rem 1rem
-      position: absolute
-      line-height: 1.2
-      width: 'calc(100% - %s * 2)' % 1rem
-      --text-banner: white
-      color: var(--text-banner)
-      &[position=top]
-        top: 0
-        background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0))
-      &[position=bottom]
-        bottom: 0
-        background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.2))
-      div+div
-        margin-top: 4px
-      .cap
-        font-size: $fs-13
-        color: unset
-      .title
-        font-weight: 500
-        font-size: $fsh3
-      @media screen and (max-width: $device-mobile)
-        padding: 1rem
-        div+div
-          margin-top: 2px
-        .title
-          font-size: $fsh4
-        .cap
-          font-size: $fs-12
   h2
     margin: .25rem 0
     font-size: $fsh4
