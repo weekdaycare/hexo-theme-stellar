@@ -1,14 +1,7 @@
 <%
-const poster = post.poster;
 var obj = {
   image: post.cover
 };
-if (poster) {
-  obj.headline = poster.headline;
-  obj.topic = poster.topic;
-  obj.caption = poster.caption;
-  obj.color = poster.color;
-}
 function div_default() {
   var el = '';
   el += '<article class="md-text">';
