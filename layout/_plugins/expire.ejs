@@ -2,7 +2,7 @@
 const { field } = theme.plugins.expire;
 let enableExpire = page.expire;
 if (enableExpire === undefined) {
-  enableExpire = field === 'all' || field === layout || (field === 'wiki' && page.wiki) || (field === 'topic' && page.topic);
+  enableExpire = field === 'all' || field === page.layout || (field === 'wiki' && page.wiki) || (field === 'topic' && page.topic);
 }
 if (enableExpire) {
   const expireTitle = __('meta.expire.title');
