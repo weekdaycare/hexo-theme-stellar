@@ -32,16 +32,20 @@ module.exports = ctx => function(args, content = '') {
   
   for (let i = 0; i < contentArray.length; i += 2) {
     const user = contentArray[i]
-    const messageContent = contentArray[i + 1]
+    const messageContent = contentArray[i + 1].trim()
     
     const align = user.includes('align:right') ? 'right' : 'left'
 
-    el += `
-    <div class="chat-item ${align}" id="chat-${i/2}">
-      <span class="user">${user.split(' ')[0]}</span>
-      <div class="message fs14">${ctx.render.renderSync({text: messageContent, engine: 'markdown'}).split('\n').join('')}</div>
-    </div>
-    `
+    el += `<div class="chat-item ${align}" id="chat-${i/2}">`
+    el += `<span class="user">${user.split(' ')[0]}</span>`
+
+    // Split message content by two or more newlines
+    const messages = messageContent.split(/\n\s*\n/).filter(item => item.trim().length > 0)
+    messages.forEach(message => {
+      el += `<div class="message fs14">${ctx.render.renderSync({text: message, engine: 'markdown'}).trim()}</div>`
+    })
+
+    el += `</div>`
   }
   
   el += '</div>'
