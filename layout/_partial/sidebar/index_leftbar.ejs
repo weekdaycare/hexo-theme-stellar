@@ -103,35 +103,39 @@ function layoutWidgets() {
 }
 function layoutFooterDiv() {
   const { social } = theme.footer
-  if (social == null) {
-    return ''
-  }
   var el = '<footer class="footer dis-select">';
-  el += '<div class="social-wrap">';
-  for (let id of Object.keys(social)) {
-    let item = social[id];
-    if (item.icon && (item.url || item.onclick)) {
-      el += '<a class="social"';
-      if (item.title) {
-        el += ' title="' + item.title + '"';
-      }
-      if (item.url) {
-        el += ' href="' + url_for(item.url) + '"';
-        if (item.url.includes('://')) {
-          el += ' target="_blank" rel="external nofollow noopener noreferrer"';
-        } else {
-          el += ' rel="noopener noreferrer"';
+  el += '<div class="theme-switch">';
+  el += `<button class="switch-item" data-theme="light" onclick='javascript:switchTolight()'>${icon('default:light')}</button>`;
+  el += `<button class="switch-item" data-theme="auto" onclick='javascript:switchTosystem()'>${icon('default:system')}</button>`;
+  el += `<button class="switch-item" data-theme="dark" onclick='javascript:switchTodark()'>${icon('default:dark')}</button>`;
+  el += '</div>'
+  if (social) {
+    el += '<div class="social-wrap">';
+    for (let id of Object.keys(social)) {
+      let item = social[id];
+      if (item.icon && (item.url || item.onclick)) {
+        el += '<a class="social"';
+        if (item.title) {
+          el += ' title="' + item.title + '"';
         }
-      } else if (item.onclick) {
-        item.onclick = item.onclick.replace(/"|\'/g, '&quot;');
-        el += ' onclick="' + item.onclick + '"';
+        if (item.url) {
+          el += ' href="' + url_for(item.url) + '"';
+          if (item.url.includes('://')) {
+            el += ' target="_blank" rel="external nofollow noopener noreferrer"';
+          } else {
+            el += ' rel="noopener noreferrer"';
+          }
+        } else if (item.onclick) {
+          item.onclick = item.onclick.replace(/"|\'/g, '&quot;');
+          el += ' onclick="' + item.onclick + '"';
+        }
+        el += '>';
+        el += icon(item.icon, 'no-lazy')
+        el += '</a>';
       }
-      el += '>';
-      el += icon(item.icon, 'no-lazy')
-      el += '</a>';
     }
+    el += '</div>';
   }
-  el += '</div>';
   el += '</footer>';
   return el;
 }
