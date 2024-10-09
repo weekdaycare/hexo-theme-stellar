@@ -471,6 +471,9 @@ data_services:
     js: /js/services/waline_new.js
   giscus:
     js: /js/services/giscus_new.js
+  # 其他类
+  webinfo:
+    js: /js/services/webinfo.js
 
 
 # 扩展插件接入方法：(插件名下面用 #plugin# 代替)

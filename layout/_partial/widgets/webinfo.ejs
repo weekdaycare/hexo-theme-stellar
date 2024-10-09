@@ -1,0 +1,42 @@
+<%
+function layoutDiv() {
+  var el = '';
+  el += `<widget class="widget-wrapper${scrollreveal(' ')} webinfo">`;
+  if (item.title) {
+    el += '<div class="widget-header dis-select">';
+    el += '<span class="name">' + item.title + '</span>';
+    el += '</div>';
+  }
+  
+  el += '<div class="widget-body fs14">';
+  if (item.article) {
+    el += '<div class="webinfo-item">';
+    el += '<div>' + __("meta.webinfo.article") + '</div>';
+    el += `<div>${site.posts.length}&nbsp;${__("meta.webinfo.post")}</div>`;
+    el += '</div>';
+  }
+
+  if (item.wordcount && config.symbols_count_time.total_symbols) {
+    el += '<div class="webinfo-item">';
+    el += '<div>' + __("meta.webinfo.wordcount") + '</div>';
+    el += `<div>${symbolsCountTotal(site)}&nbsp;${__("meta.wordcount.words")}</div>`;
+    el += '</div>';
+  }
+  if (item.sitetime) {
+    el += '<div class="webinfo-item">';
+    el += '<div>' + __("meta.webinfo.sitetime") + '</div>';
+    el += `<div class="lastupdate ds-webinfo" data-time="${new Date()}">&nbsp;${__("meta.date_suffix.day")}</div>`;
+    el += '</div>';
+  }
+  if (item.runtime) {
+    el += '<div class="webinfo-item">';
+    el += '<div>' + __("meta.webinfo.runtime") + '</div>';
+    el += `<div class="runtime ds-webinfo" data-time="${item.runtime}">&nbsp;${__("meta.webinfo.time")}</div>`;
+    el += '</div>';
+  }
+  el += '</div>';
+  el += '</widget>';
+  return el;
+}
+%>
+<%- layoutDiv() %>

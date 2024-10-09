@@ -21,6 +21,15 @@ recent:
   rss: # /atom.xml # npm i hexo-generator-feed
   limit: 10 # Count of posts
 
+# 站点信息
+webinfo:
+  layout: webinfo
+  title: 站点信息
+  article: true # 文章篇数
+  wordcount: true # hexo-word-counter
+  runtime: 11/16/2021 23:00:00 # 运行时长
+  sitetime: true # 上次更新时间
+
 # 页面树（与当前页面强关联的上下篇文章列表）
 tree:
   layout: tree
