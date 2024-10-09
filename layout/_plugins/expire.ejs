@@ -11,9 +11,8 @@ if (enableExpire) {
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   var expiredDays = '<%= conf.expiredDays %>' || 60;
-  var postDate = new Date('<%= page.updated %>').getTime();
-  var currentDate = new Date().getTime();
-  var daysDiff = Math.floor((currentDate - postDate) / (1000 * 3600 * 24));
+  var postDate = '<%= page.updated %>';
+  var daysDiff = util.diffDate(postDate, false);
   if (daysDiff > expiredDays) {
     var message = '<%= expireMessageTemplate %>'.replace('%s', daysDiff);
     var cell = '<div class="tag-plugin colorful note" color="' + '<%= conf.color %>' + '">';
