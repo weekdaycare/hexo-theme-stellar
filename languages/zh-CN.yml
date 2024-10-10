@@ -51,11 +51,12 @@ meta:
     message: 这篇文章上次更新于 %s 天前，部分信息可能已发生改变，请注意甄别
   webinfo:
     article: 星星：
-    runtime: 自转周数：
+    runtime: 自转：
     wordcount: 星辉：
-    sitetime: 上次开荒：
+    sitetime: 开荒：
     post: 篇
     time: 天
+    version: 公转：
 
 page:
   error:

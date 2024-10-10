@@ -11,28 +11,34 @@ function layoutDiv() {
   el += '<div class="widget-body fs14">';
   if (item.article) {
     el += '<div class="webinfo-item">';
-    el += '<div>' + __("meta.webinfo.article") + '</div>';
-    el += `<div>${site.posts.length}&nbsp;${__("meta.webinfo.post")}</div>`;
+    el += '<span>' + __("meta.webinfo.article") + '</span>';
+    el += `<span>${site.posts.length}&nbsp;${__("meta.webinfo.post")}</span>`;
     el += '</div>';
   }
 
   if (item.wordcount && config.symbols_count_time.total_symbols) {
     el += '<div class="webinfo-item">';
-    el += '<div>' + __("meta.webinfo.wordcount") + '</div>';
-    el += `<div>${symbolsCountTotal(site)}&nbsp;${__("meta.wordcount.words")}</div>`;
+    el += '<span>' + __("meta.webinfo.wordcount") + '</span>';
+    el += `<span>${symbolsCountTotal(site)}&nbsp;${__("meta.wordcount.words")}</span>`;
     el += '</div>';
   }
   if (item.sitetime) {
-    el += '<div class="webinfo-item">';
-    el += '<div>' + __("meta.webinfo.sitetime") + '</div>';
-    el += `<div class="lastupdate ds-webinfo" data-time="${new Date()}">&nbsp;${__("meta.date_suffix.day")}</div>`;
+    el += '<div class="webinfo-item" id="post-meta">';
+    el += '<span>' + __("meta.webinfo.sitetime") + '</span>';
+    el += `<time class="time" datetime="${new Date()}">${new Date().toLocaleString('zh-CN', { year: 'numeric', month: 'numeric', day: 'numeric' })}</time>`;
     el += '</div>';
   }
   if (item.runtime) {
     el += '<div class="webinfo-item">';
-    el += '<div>' + __("meta.webinfo.runtime") + '</div>';
-    el += `<div class="runtime ds-webinfo" data-time="${item.runtime}">&nbsp;${__("meta.webinfo.time")}</div>`;
+    el += '<span>' + __("meta.webinfo.runtime") + '</span>';
+    el += `<time class="ds-webinfo" datetime="${item.runtime}">&nbsp;${__("meta.webinfo.time")}</time>`;
     el += '</div>';
+  }
+  if (item.version && config.swpp.enable) {
+    el += '<div class="webinfo-item">';
+      el += '<span>' + __("meta.webinfo.version") + '</span>';
+      el += `<span class="ds-webinfo" version></span>`;
+      el += '</div>';
   }
   el += '</div>';
   el += '</widget>';

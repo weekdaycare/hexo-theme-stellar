@@ -5,11 +5,7 @@
     background: var(--card)
     border: 1px solid var(--block-border)
     .webinfo-item
-      display: block
+      display: flex
       padding: 8px 0
-      div
-        &:first-child
-          display inline-block
-        &:last-child
-          display inline-block
-          float right
+      justify-content: space-between
+      align-items: center
