@@ -9,6 +9,7 @@
 
 module.exports = ctx => function(args) {
   args = ctx.args.map(args, ['repo', 'api'], ['group'])
+  const lazyload = ctx.theme.config.plugins.lazyload.enable
   var api
   if (args.api) {
     api = args.api
@@ -18,7 +19,7 @@ module.exports = ctx => function(args) {
   
   var el = '<div class="tag-plugin sites-wrap">'
   if (api) {
-    el += '<div class="ds-sites"'
+    el += `<div class="ds-sites"${lazyload ? ' lazyload' : ''}`
     el += ' api="' + api + '"'
     el += '>'
     el += '<div class="grid-box"></div>'
