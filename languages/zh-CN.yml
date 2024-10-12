@@ -4,7 +4,7 @@ btn:
   wiki: 文档
   topic: 专栏
   notebook: 笔记本
-  recent_publish: 近期发布
+  recent_publish: 文章
   all_wiki: 所有项目
   category: 分类
   categories: 分类
@@ -60,21 +60,21 @@ meta:
 
 page:
   error:
-    what: 很抱歉，页面挂了捏
-    why: 可能是输入地址有误或该地址已被删除
-    action: 返回主页
+    what: 很抱歉，传送地址不在该星球上
+    why: 可能是传送地址有误或该地址已被清除
+    action: 返回着陆点
 
 search:
-  search: 搜点啥？
+  search: 探索？
   search_in: 在 %s 中搜索
-  no_results: 啥都没有
+  no_results: 空空如也
 
 message:
   copied: 复制成功
   theme_switched:
-    light: 切换到浅色模式
-    dark: 切换到深色模式
-    auto: 切换到跟随系统配色
+    light: 浅色模式
+    dark: 深色模式
+    auto: 跟随系统
 
 symbol:
   comma: "，"
