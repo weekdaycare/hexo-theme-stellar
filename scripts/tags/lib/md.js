@@ -14,7 +14,8 @@ var md_index = 0
 module.exports = ctx => function(args) {
   args = ctx.args.map(args, [''], ['src'])
   const md_id = "md_" + ++md_index
+  const lazyload = ctx.theme.config.plugins.lazyload.enable
   return `
-  <div class="ds-mdrender" src="${args.src}" id="${md_id}"></div>
+  <div class="ds-mdrender" src="${args.src}" id="${md_id}"${lazyload ? ' lazyload' : ''}></div>
   `
 }
