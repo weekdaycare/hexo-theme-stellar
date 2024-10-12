@@ -388,6 +388,7 @@ tag_plugins:
   # {% coding %}
   coding:
     api:
+    lazyload: # true, false
   # {% timeline %}
   timeline:
     max-height: 80vh
