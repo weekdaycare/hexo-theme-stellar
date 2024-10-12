@@ -10,7 +10,7 @@
 module.exports = ctx => function(args) {
   args = ctx.args.map(args, ['lang', 'withcss'], ['url'])
   const api = ctx.theme.config.tag_plugins.coding?.api.replace(/\/$/, '')
-  const lazyload = ctx.theme.config.tag_plugins.coding?.lazyload
+  const lazyload = ctx.theme.config.plugins.lazyload.enable
   args.url = api + '/api/v1/generate?url=' + args.url
   args.withcss = args.withcss || 'true'
   var el = ''
