@@ -17,9 +17,10 @@ module.exports = ctx => function(args) {
   var params = ['show_owner', 'theme', 'title_color', 'text_color', 'icon_color', 'bg_color', 'hide_border', 'cache_seconds', 'locale']
   args = ctx.args.map(args, params, ['repo'])
   const path = args.repo
+  const lazyload = ctx.theme.config.plugins.lazyload.enable
   var el = ''
   el += '<div class="tag-plugin ghcard">'
-  el += '<a class="ghcard" rel="external nofollow noopener noreferrer" href="https://github.com/' + path + '">'
+  el += '<a class="ghcard " rel="external nofollow noopener noreferrer" href="https://github.com/' + path + '">'
   let url = ''
   if (path.includes('/')) {
     // is repo
@@ -33,7 +34,7 @@ module.exports = ctx => function(args) {
   if (!url.includes('&show_owner=')) {
     url += '&show_owner=true'
   }
-  el += '<img src="' + url + '"/>'
+  el += `<img class="${lazyload ? ' lazy' : ''}" ${lazyload ? 'data-src' : 'src'}="' + url + '"/>`
   el += '</a></div>'
   return el
 }
