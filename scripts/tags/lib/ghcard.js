@@ -34,7 +34,7 @@ module.exports = ctx => function(args) {
   if (!url.includes('&show_owner=')) {
     url += '&show_owner=true'
   }
-  el += `<img class="${lazyload ? ' lazy' : ''}" ${lazyload ? 'data-src' : 'src'}="' + url + '"/>`
+  el += `<img class="${lazyload ? 'lazy' : ''}" ${lazyload ? 'data-src' : 'src'}="' + url + '"/>`
   el += '</a></div>'
   return el
 }
