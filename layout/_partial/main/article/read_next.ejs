@@ -42,6 +42,9 @@ function layoutDiv() {
       el += '<div class="note">' + title_prev + '</div>';
       el += prev.title || prev.wiki || date(prev.date, config.date_format);
       el += `</a`;
+    } else {
+      el += '>';
+      el += `<div class="note">${__('meta.newer_prev')}</div><span>${__('meta.newer_null')}</span`;
     }
     el += `>`;
     // next
@@ -51,6 +54,9 @@ function layoutDiv() {
       el += '<div class="note">' + title_next + '</div>';
       el += next.title || next.wiki || date(next.date, config.date_format);
       el += `</a`;
+    } else {
+      el += '>';
+      el += `<div class="note">${__('meta.older_next')}</div><span>${__('meta.older_null')}</span`;
     }
     el += `>`;
     el += '</section>';

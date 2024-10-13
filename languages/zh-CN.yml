@@ -26,7 +26,11 @@ meta:
   prev: 回顾上一篇
   next: 接下来阅读
   older: 较早文章
+  older_next: 🎬 末班车
+  older_null: 已抵达最后一站
   newer: 较新文章
+  newer_prev: 🌱 荒野
+  newer_null: 等待开荒中
   references: 参考资料
   related_posts: 您可能感兴趣的文章
   back_to_top: 回到顶部
