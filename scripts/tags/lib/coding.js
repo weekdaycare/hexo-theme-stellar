@@ -1,8 +1,8 @@
 /**
- * coding.js v1.0 | https://github.com/weekdaycare/hexo-theme-stellar/
+ * coding.js v1.1 | https://github.com/weekdaycare/hexo-theme-stellar/
  * 格式与官方标签插件一致使用空格分隔，中括号内的是可选参数（中括号不需要写出来）
  *
- * {% coding url [lang:string] [withcss:boolean] %}
+ * {% coding url[#L1-L4] [lang:string] [withcss:boolean] %}
  */
 
 'use strict'
@@ -13,6 +13,9 @@ module.exports = ctx => function(args) {
   const lazyload = ctx.theme.config.plugins.lazyload.enable
   args.url = api + '/api/v1/generate?url=' + args.url
   args.withcss = args.withcss || 'true'
+  if (args.url.includes('#')) {
+    args.url = args.url.replace('#', '&lines=');
+  }
   var el = ''
   el += `<div class="tag-plugin ds-coding"`
   el += ' ' + ctx.args.joinTags(args, ['url', 'lang', 'withcss']).join(' ')
