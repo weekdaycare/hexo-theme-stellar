@@ -9,6 +9,7 @@
 
 module.exports = ctx => function(args) {
   const full_url_for = require('hexo-util').full_url_for.bind(ctx)
+  const lazyload = ctx.theme.config.plugins.lazyload.enable
   args = ctx.args.map(args, ['icon', 'desc'], ['url', 'title'])
   if (args.url == null) {
     return '';
@@ -34,7 +35,7 @@ module.exports = ctx => function(args) {
   if (args.url.includes('://')) {
     el += ' target="_blank" rel="external nofollow noopener noreferrer"'
   }
-  el += ' cardlink'
+  el += ` cardlink${lazyload ? ' lazyload' : ''}`
   if (args.api) {
     el += ` api="${args.api}"`
   }
