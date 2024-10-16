@@ -6,13 +6,20 @@ if (page.title && page.wiki) {
   page.robots = 'noindex,follow';
 }
 
+// 获取 swiper 文章
+var swiperPosts = site.posts.filter(function(post) {
+  return post.swiper_index >= 0;
+}).sort(function(a, b) {
+  return b.swiper_index - a.swiper_index;
+});
+
 function layout_post_card(layout, post, content) {
   var el = '';
   var layout = layout;
   if (layout == 'post' && post.cover != undefined) {
     layout += ' photo';
   }
-  el += `<div class="post-card${scrollreveal(' ')} ${layout}">`
+  el += `<div class="post-card${scrollreveal(' ')} ${layout}">`;
   el += content;
   el += '</div>';
   return el;
@@ -22,7 +29,7 @@ function layout_post_list(partial) {
   var el = '';
   el += '<div class="post-list post">';
   if (theme.plugins.swiper.homepage) {
-    el += render_swiper(site.swiper_posts);
+    el += render_swiper(swiperPosts.toArray());
   }
   page.posts.each(function(post){
     el += layout_post_card('post', post, partial(post));
@@ -31,17 +38,23 @@ function layout_post_list(partial) {
   return el;
 }
 
+function layout_swiper_slide(post) {
+  let el = `<a class="post-card swiper-slide" href="${url_for(post.path)}">`;
+  el += `<div class="post-cover"><img src="${post.cover || theme.default.cover}" alt="${post.title}"></div>`;
+  el += `<p class="post-title">${post.title}</p>`;
+  el += '<div class="meta-cap">';
+  el += `<span class="cap">${date(post.date, config.date_format)}</span>`;
+  el += '</div>';
+  el += '</a>';
+  return el;
+}
+
 function render_swiper(posts) {
-  let el = '<div class="swiper" id="swiper-api" homepage="true">';
+  var el = '';
+  el += '<div class="swiper" id="swiper-api" homepage="true">';
   el += '<div class="swiper-wrapper">';
-  posts.forEach(post => {
-    el += `<a class="post-card swiper-slide" href="${url_for(post.path)}">`;
-    el += `<div class="post-cover"><img src="${post.cover || theme.default.cover}" alt="${post.title}"></div>`;
-    el += `<p class="post-title">${post.title}</p>`;
-    el += '<div class="meta-cap">';
-    el += `<span class="cap">${date(post.date, config.date_format)}</span>`;
-    el += '</div>';
-    el += '</a>';
+  posts.forEach(function(post) {
+    el += layout_swiper_slide(post);
   });
   el += '</div>';
   el += '<div class="swiper-button-next"></div>';
