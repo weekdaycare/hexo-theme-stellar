@@ -1,0 +1,29 @@
+.post-list .swiper-slide
+  margin: 0
+  padding: 0 1rem
+  text-align: right
+  display: flex
+  align-items: flex-end
+  flex-direction: column
+  width: fit-content
+  max-width: 15rem
+  height: 7rem
+  position: relative
+  .post-cover
+    left: -1em
+    right: initial
+    bottom: -1em
+  .post-title
+    font-size: var(--fsh4)
+    margin: 1rem 0 0 4rem
+  .meta-cap
+    bottom: 1rem
+    position: absolute
+
+.post-list .swiper
+  .swiper-button-prev,.swiper-button-next
+    top: 46%
+    display: none
+  &:hover
+    .swiper-button-prev,.swiper-button-next
+      display: flex

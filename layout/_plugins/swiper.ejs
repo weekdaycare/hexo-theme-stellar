@@ -5,12 +5,17 @@
       utils.css(`<%- conf.css %>`);
       utils.js(`<%- conf.js %>`, { defer: true }).then(function () {
         const effect = swiper_api.getAttribute('effect') || '';
+        const isHomepage = swiper_api.getAttribute('homepage') === 'true';
         var swiper = new Swiper('.swiper#swiper-api', {
           slidesPerView: 'auto',
           spaceBetween: 8,
-          centeredSlides: true,
+          centeredSlides: !isHomepage,
           effect: effect,
-          rewind: true,
+          rewind: !isHomepage,
+          loop: isHomepage,
+          autoplay: isHomepage ? {
+            disableOnInteraction: false
+          } : false,
           pagination: {
             el: '.swiper-pagination',
             clickable: true,

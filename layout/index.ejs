@@ -21,9 +21,31 @@ function layout_post_card(layout, post, content) {
 function layout_post_list(partial) {
   var el = '';
   el += '<div class="post-list post">';
+  if (theme.plugins.swiper.homepage) {
+    el += render_swiper(site.swiper_posts);
+  }
   page.posts.each(function(post){
     el += layout_post_card('post', post, partial(post));
   })
+  el += '</div>';
+  return el;
+}
+
+function render_swiper(posts) {
+  let el = '<div class="swiper" id="swiper-api" homepage="true">';
+  el += '<div class="swiper-wrapper">';
+  posts.forEach(post => {
+    el += `<a class="post-card swiper-slide" href="${url_for(post.path)}">`;
+    el += `<div class="post-cover"><img src="${post.cover || theme.default.cover}" alt="${post.title}"></div>`;
+    el += `<p class="post-title">${post.title}</p>`;
+    el += '<div class="meta-cap">';
+    el += `<span class="cap">${date(post.date, config.date_format)}</span>`;
+    el += '</div>';
+    el += '</a>';
+  });
+  el += '</div>';
+  el += '<div class="swiper-button-next"></div>';
+  el += '<div class="swiper-button-prev"></div>';
   el += '</div>';
   return el;
 }
