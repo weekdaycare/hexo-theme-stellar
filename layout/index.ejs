@@ -28,7 +28,7 @@ function layout_post_card(layout, post, content) {
 function layout_post_list(partial) {
   var el = '';
   el += '<div class="post-list post">';
-  if (theme.plugins.swiper.homepage) {
+  if (theme.plugins.swiper.enable && theme.plugins.swiper.homepage) {
     el += render_swiper(swiperPosts.toArray());
   }
   page.posts.each(function(post){
