@@ -7,7 +7,7 @@ if (page.title && page.wiki) {
 }
 
 // 获取 swiper 文章
-var swiperPosts = site.posts.filter(function(post) {
+var swiperPosts = site.posts.toArray().filter(function(post) {
   return post.swiper_index >= 0;
 }).sort(function(a, b) {
   return b.swiper_index - a.swiper_index;
@@ -29,7 +29,7 @@ function layout_post_list(partial) {
   var el = '';
   el += '<div class="post-list post">';
   if (theme.plugins.swiper.enable && theme.plugins.swiper.homepage) {
-    el += render_swiper(swiperPosts.toArray());
+    el += render_swiper(swiperPosts);
   }
   page.posts.each(function(post){
     el += layout_post_card('post', post, partial(post));
