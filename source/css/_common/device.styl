@@ -34,7 +34,8 @@
 // 侧边栏弹出按钮
 .float-panel button
   cursor: pointer
-  color: var(--text-p2)
+  color: var(--text-meta)
+  trans1 color
   background: none
   padding: 8px
   line-height: 0
@@ -46,6 +47,8 @@
       trans1 transform
     width: auto
     height: 28px
+  &:hover
+    color: var(--theme-link)
 
 // 侧边栏弹出后
 .l_body[leftbar] .float-panel, .l_body[rightbar] .float-panel

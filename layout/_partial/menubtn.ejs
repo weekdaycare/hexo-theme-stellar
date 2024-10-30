@@ -1,5 +1,5 @@
 <div class='float-panel'>
-  <button type='button' style='display:none' class='laptop-only button-toggle mobile' onclick='util.scrollTop()'>
+  <button type='button' style='display:block' class='button-toggle mobile' onclick='util.scrollTop()'>
     <%- icon('default:upup') %>
   </button>
   <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
@@ -9,7 +9,7 @@
     <%- icon('default:rightbar') %>
   </button>
   <% if (page.comments) { %>
-    <button type='button' style='display:none' class='laptop-only button-toggle mobile' onclick='util.scrollComment()'>
+    <button type='button' style='display:block' class='button-toggle mobile' onclick='util.scrollComment()'>
       <%- icon('default:tocomment') %>
     </button>
   <% } %>
