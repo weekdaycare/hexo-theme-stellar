@@ -102,13 +102,16 @@ floatable-trans()
   trans2 transform box-shadow
 floatable-float()
   box-shadow: 0px 0px 15px 1px var(--text-meta)
-  transform: translateZ(1px)
+  transform: translateY(-2px)
 
 hoverable-card()
   trans1 all
   box-shadow: $boxshadow-card
   &:hover
     floatable-float()
+  ondark()
+    &:hover
+      box-shadow: 0px 0px 15px 1px var(--card)
   :root[data-theme="light"] &
     onlight()
   :root[data-theme="dark"] &
