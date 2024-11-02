@@ -1,30 +1,35 @@
 utils.jq(() => {
-  var $inputArea = $("input#search-input");
+  const $inputArea = $("input#search-input");
   if ($inputArea.length === 0) {
     return;
   }
 
-  var $resultArea = $("#search-result");
-  var $searchWrapper = $("#search-wrapper");
-  var client = algoliasearch(window.searchConfig.appId, window.searchConfig.apiKey);
-  var index = client.initIndex(window.searchConfig.indexName);
+  const $resultArea = $("#search-result");
+  const $searchWrapper = $("#search-wrapper");
+  const client = algoliasearch(window.searchConfig.appId, window.searchConfig.apiKey);
+  const index = client.initIndex(window.searchConfig.indexName);
 
   function filterResults(hits, filterPath) {
     if (!filterPath || filterPath === '/') return hits;
-    var regex = new RegExp(filterPath);
+    const regex = new RegExp(filterPath);
     return hits.filter(hit => regex.test(hit.url));
   }
 
   function displayResults(hits) {
-    var $resultList = $("<ul>").addClass("search-result-list");
+    const $resultList = $("<ul>").addClass("search-result-list");
     if (hits.length === 0) {
       $searchWrapper.addClass('noresult');
     } else {
       $searchWrapper.removeClass('noresult');
-      hits.forEach(function(hit) {
-        var contentSnippet = hit._snippetResult.content.value;
-        var title = hit.hierarchy.lvl1 || 'Untitled';
-        var $item = $("<li>").html(`<a href="${hit.url}"><span class='search-result-title'>${title}</span><p class="search-result-content">${contentSnippet}</p></a>`);
+      hits.forEach(hit => {
+        const contentSnippet = hit._snippetResult.content.value;
+        const title = hit.hierarchy.lvl1 || 'Untitled';
+        const $item = $("<li>").html(`
+          <a href="${hit.url}">
+            <span class='search-result-title'>${title}</span>
+            <p class="search-result-content">${contentSnippet}</p>
+          </a>
+        `);
         $resultList.append($item);
       });
     }
@@ -32,8 +37,8 @@ utils.jq(() => {
   }
 
   $inputArea.on("input", function() {
-    var query = $(this).val().trim();
-    var filterPath = $inputArea.data('filter');
+    const query = $(this).val().trim();
+    const filterPath = $inputArea.data('filter');
 
     if (query.length <= 0) {
       $searchWrapper.attr('searching', 'false');
@@ -61,7 +66,7 @@ utils.jq(() => {
     }
   });
 
-  var observer = new MutationObserver(function(mutationsList) {
+  const observer = new MutationObserver(function(mutationsList) {
     if (mutationsList.length === 1) {
       if (mutationsList[0].addedNodes.length) {
         $searchWrapper.removeClass('noresult');
