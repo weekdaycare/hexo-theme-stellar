@@ -69,7 +69,7 @@ page:
     action: 传送到着陆点
 
 search:
-  search: 探索？
+  search: Power by Algolia
   search_in: 在 %s 中搜索
   no_results: 空空如也
 
