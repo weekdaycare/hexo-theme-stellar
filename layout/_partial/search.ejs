@@ -13,7 +13,14 @@ if (item.placeholder == null && item.filter == 'auto') {
 }
 function layoutDiv() {
   var el = ''
+  el += `<div id="search-mask" class="search-mask"></div>`
   el += `<div class="search-wrapper" id="search-wrapper">`
+  el += `<div class="search-header">`
+  el += `<span class="search-title">${__('search.search')}</span>`
+  el += `<a class="search-close-button" id="search-close">`
+  el += icon('default:close')
+  el += `</a>`
+  el += `</div>`
   el += `<form class="search-form">`
   var filter = ''
   if (item.filter == 'auto') {
@@ -28,9 +35,6 @@ function layoutDiv() {
       filter = item.filter
     }
   }
-  el += `<a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();">`
-  el += icon('default:search')
-  el += `</a>`
   el += `<input type="text" class="search-input" id="search-input"`
   if (filter.length > 0) {
     if (!filter.startsWith('/')) {
@@ -39,8 +43,11 @@ function layoutDiv() {
     el += ` data-filter="${filter}"`
     el += ` placeholder="${item.placeholder || __('search.search_in', filter)}">`
   } else {
-    el += ` placeholder="${item.placeholder || __('search.search')}">`
+    el += ` placeholder="${item.placeholder || __('search.tip')}">`
   }
+  el += `<a class="search-close-button" onclick="document.getElementById('search-input').value='';">`
+  el += icon('default:close')
+  el += `</a>`
   el += `</form>`
   el += `<div id="search-result"></div>`
   el += `<div class="search-no-result">${__('search.no_results')}</div>`

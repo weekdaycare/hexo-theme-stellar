@@ -1,36 +1,11 @@
-// A local search script with the help of
-// [hexo-generator-search](https://github.com/PaicHyperionDev/hexo-generator-search)
-// Copyright (C) 2015
-// Joseph Pan <http://github.com/wzpan>
-// Shuhao Mao <http://github.com/maoshuhao>
-// This library is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as
-// published by the Free Software Foundation; either version 2.1 of the
-// License, or (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful, but
-// WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-// 02110-1301 USA
-//
-// Modified by:
-// Pieter Robberechts <http://github.com/probberechts>
-
-/*exported searchFunc*/
 var searchFunc = function(path, filter, wrapperId, searchId, contentId) {
 
   function getAllCombinations(keywords) {
     var i, j, result = [];
-
     for (i = 0; i < keywords.length; i++) {
-        for (j = i + 1; j < keywords.length + 1; j++) {
-            result.push(keywords.slice(i, j).join(" "));
-        }
+      for (j = i + 1; j < keywords.length + 1; j++) {
+          result.push(keywords.slice(i, j).join(" "));
+      }
     }
     return result;
   }
@@ -45,10 +20,10 @@ var searchFunc = function(path, filter, wrapperId, searchId, contentId) {
       var $resultContent = document.getElementById(contentId);
       var $wrapper = document.getElementById(wrapperId);
 
-      $input.addEventListener("input", function(){
+      $input.addEventListener("input", function() {
         var resultList = [];
         var keywords = getAllCombinations(this.value.trim().toLowerCase().split(" "))
-          .sort(function(a,b) { return b.split(" ").length - a.split(" ").length; });
+          .sort(function(a, b) { return b.split(" ").length - a.split(" ").length; });
         $resultContent.innerHTML = "";
         if (this.value.trim().length <= 0) {
           $wrapper.setAttribute('searching', 'false');
@@ -74,7 +49,7 @@ var searchFunc = function(path, filter, wrapperId, searchId, contentId) {
               indexTitle = dataTitleLowerCase.indexOf(keyword);
               indexContent = dataContentLowerCase.indexOf(keyword);
 
-              if( indexTitle >= 0 || indexContent >= 0 ){
+              if (indexTitle >= 0 || indexContent >= 0) {
                 matches += 1;
                 if (indexContent < 0) {
                   indexContent = 0;
@@ -89,21 +64,21 @@ var searchFunc = function(path, filter, wrapperId, searchId, contentId) {
           if (matches > 0) {
             var searchResult = {};
             searchResult.rank = matches;
-            searchResult.str = "<li><a href='"+ dataUrl +"'><span class='search-result-title'>"+ dataTitle +"</span>";
+            searchResult.str = "<li><a href='" + dataUrl + "'><span class='search-result-title'>" + dataTitle + "</span>";
             if (firstOccur >= 0) {
               // cut out 100 characters
               var start = firstOccur - 20;
               var end = firstOccur + 80;
 
-              if(start < 0){
+              if (start < 0) {
                 start = 0;
               }
 
-              if(start == 0){
+              if (start == 0) {
                 end = 100;
               }
 
-              if(end > dataContent.length){
+              if (end > dataContent.length) {
                 end = dataContent.length;
               }
 
@@ -112,20 +87,21 @@ var searchFunc = function(path, filter, wrapperId, searchId, contentId) {
               // highlight all keywords
               var regS = new RegExp(keywords.join("|"), "gi");
               matchContent = matchContent.replace(regS, function(keyword) {
-                return "<span class=\"search-keyword\">"+keyword+"</span>";
+                return "<span class=\"search-keyword\">" + keyword + "</span>";
               });
 
-              searchResult.str += "<p class=\"search-result-content\">" + matchContent +"...</p>";
+              searchResult.str += "<p class=\"search-result-content\">" + matchContent + "...</p>";
             }
             searchResult.str += "</a></li>";
             resultList.push(searchResult);
           }
         });
+
         if (resultList.length) {
           resultList.sort(function(a, b) {
-              return b.rank - a.rank;
+            return b.rank - a.rank;
           });
-          var result ="<ul class=\"search-result-list\">";
+          var result = "<ul class=\"search-result-list\">";
           for (var i = 0; i < resultList.length; i++) {
             result += resultList[i].str;
           }
@@ -138,7 +114,8 @@ var searchFunc = function(path, filter, wrapperId, searchId, contentId) {
 };
 
 utils.jq(() => {
-  var $inputArea = $("input#search-input");
+  $(function () {
+    var $inputArea = $("#search-input");
     if ($inputArea.length == 0) {
       return;
     }
@@ -167,4 +144,29 @@ utils.jq(() => {
       }
     });
     observer.observe($resultArea, { childList: true });
-  });
+
+    // 添加搜索按钮和遮罩层的事件监听
+    const searchButton = document.querySelector("#search-button a");
+    const searchWrapper = document.getElementById("search-wrapper");
+    const searchMask = document.getElementById("search-mask");
+
+    searchButton.addEventListener("click", function() {
+      searchWrapper.style.display = "block";
+      searchMask.style.display = "block";
+      $inputArea.focus();
+    });
+
+    searchMask.addEventListener("click", function() {
+      searchWrapper.style.display = "none";
+      searchMask.style.display = "none";
+    });
+
+    const closeButton = document.querySelector("#search-close");
+    if (closeButton) {
+      closeButton.addEventListener("click", function() {
+        searchWrapper.style.display = "none";
+        searchMask.style.display = "none";
+      });
+    }
+  })
+});

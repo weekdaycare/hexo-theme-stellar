@@ -1,67 +1,59 @@
-
 .search-wrapper
-  width: 100%
+  position: fixed
+  top: 10vh
+  left: 50%
+  z-index: 21
+  display: none
+  margin-left: -15rem
+  padding: 1rem
+  width: 30rem
+  word-break: break-all
+  box-shadow: $boxshadow-card
+  background: var(--site-bg)
+  border: 1px solid var(--block-border)
+  border-radius: $border-bar
+
+  .search-header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    color: var(--text)
+    margin-bottom: 1rem
+
+  .search-close-button
+    margin-left: 8px
+    color: var(--text-p3)
+    line-height: 1
+    cursor: pointer
+    trans1 color
+    &:hover
+      color: $color-theme
+
   >.search-form
-    position: sticky
-    margin-bottom: 8px
-    top: 1rem
-    height: 40px
     display: flex
     flex-direction: row
     align-items: center
+    margin-bottom: .75rem
     transition: 0.38s ease-out
-    z-index: 0
     border-radius: $border-bar
-    color: var(--text)
     background: var(--block)
     border: 1px solid var(--block-border)
     &:has(input:focus)
       background: var(--card)
+    .search-close-button
+      margin-right: 1rem
+
   .search-input
     width: 100%
     box-sizing: border-box
     font-family: $ff-body
     font-size: $fs-14
-    padding: 12px 0
+    padding: .75rem 1rem
     color: var(--text)
-  .search-button 
-    border-radius: $border-bar
-    display: flex
-    align-items: center
-    height: 40px
-    svg
-      height: 1rem
-      width: 40px
-      margin-left: 4px
-      color: var(--text-p2)
-      fill: currentColor
-      path[p-id="1562"]
-        color: $color-theme
-    
-  &[searching='true']
-    .search-button
-      path[p-id="1562"]
-        color: $c-green
-  &.noresult[searching='true']
-    .search-button
-      path[p-id="1562"]
-        color: $c-red
-
-  .search-no-result
-    display: none
-    color: var(--text-p1)
-    text-align: center
-    font-size: $fs-14
-    padding: 2rem
-    background: var(--block)
-    border-radius: $border-card
 
   #search-result
     max-height: 60vh
-    overflow: scroll
-    scrollbar-width: none
-    scrollbar(0, 0)
-    border-radius: $border-card
+    overflow-y: auto
     &:empty
       display: none
     .search-result-list
@@ -102,9 +94,38 @@
       font-weight: bold
       filter grayscale(25%)
 
+  .search-no-result
+    display: none
+    color: var(--text-p1)
+    text-align: center
+    font-size: $fs-14
+    padding: 2rem
+    background: var(--block)
+    border-radius: $border-card
 
 .search-wrapper.noresult[searching='true']
   .search-no-result
     display: block
-    margin-bottom: 8px
+    margin: 0
     border: 1px solid var(--block-border)
+
+#search-mask
+  position: fixed
+  inset: 0
+  z-index: 20
+  display: none
+  backdrop-filter: blur(20px)
+  -webkit-backdrop-filter: blur(20px)
+
+@media screen and (max-width: $device-mobile-max)
+  .search-wrapper 
+    top: 0
+    left: 0
+    margin: 0
+    width: 100%
+    height: 100%
+    border: 0
+    border-radius: 0
+    box-sizing: border-box
+    #search-result
+      max-height: 78vh

@@ -145,17 +145,8 @@ function layoutLogo() {
 }
 
 function layoutNavArea() {
-  var search = {}
-  if (page.search) {
-    search = page.search
-  } else if (wiki?.search) {
-    search = wiki.search
-  } else if (topic?.search) {
-    search = topic.search
-  }
   var el = ''
   el += `<div class="nav-area">`
-  el += partial('search', {item: search})
   el += partial('menu', {where: 'sidebar'})
   el += `</div>`
   return el

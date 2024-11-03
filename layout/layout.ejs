@@ -36,6 +36,19 @@ if (theme.style.site && theme.style.site['background-image']) {
   site_background += `</div>`
 }
 
+const wiki = theme.wiki.tree[page.wiki]
+const topic = theme.topic.tree[page.topic]
+const notebook = theme.notebooks.tree[page.notebook]
+
+var search = {}
+if (page.search) {
+  search = page.search
+} else if (wiki?.search) {
+  search = wiki.search
+} else if (topic?.search) {
+  search = topic.search
+}
+
 var html = `<!DOCTYPE html>`
 if (theme.style.prefers_theme === 'auto') {
     html += `<html lang="${page.lang}">`
@@ -63,6 +76,7 @@ if (theme.style.prefers_theme === 'auto') {
       html += `</aside>`
       html += partial('_partial/menubtn')
     html += `</div>`
+    html += partial('_partial/search', { item: search })
     html += `<div class="scripts">`
       html += partial('_partial/scripts')
     html += `</div>`
