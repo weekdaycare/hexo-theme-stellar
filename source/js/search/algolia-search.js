@@ -53,7 +53,7 @@ utils.jq(() => {
       index.search(query, {
         hitsPerPage: window.searchConfig.hitsPerPage,
         attributesToHighlight: ['content'],
-        attributesToSnippet: ['content:30'],
+        attributesToSnippet: ['content:40'],
         highlightPreTag: '<span class="search-keyword">',
         highlightPostTag: '</span>',
         restrictSearchableAttributes: ['content']

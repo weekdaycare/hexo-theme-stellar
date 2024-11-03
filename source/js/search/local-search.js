@@ -100,6 +100,8 @@ var searchFunc = function(path, filter, wrapperId, searchId, contentId) {
         if (resultList.length) {
           resultList.sort((a, b) => b.rank - a.rank);
           $resultContent.innerHTML = `<ul class="search-result-list">${resultList.map(item => item.str).join('')}</ul>`;
+        } else {
+          $resultContent.innerHTML = '';
         }
       }, 300);
 
