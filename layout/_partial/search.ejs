@@ -45,7 +45,7 @@ function layoutDiv() {
   } else {
     el += ` placeholder="${item.placeholder || __('search.tip')}">`
   }
-  el += `<a class="search-close-button" onclick="document.getElementById('search-input').value='';">`
+  el += `<a class="search-close-button" id="search-clear">`
   el += icon('default:close')
   el += `</a>`
   el += `</form>`

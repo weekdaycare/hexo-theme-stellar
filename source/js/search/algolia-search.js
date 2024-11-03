@@ -1,6 +1,6 @@
 utils.jq(() => {
   $(function () {
-    const $inputArea = $("input#search-input");
+    const $inputArea = $("#search-input");
     if ($inputArea.length === 0) return;
 
     const $resultArea = $("#search-result");
@@ -8,13 +8,11 @@ utils.jq(() => {
     const $searchMask = $("#search-mask");
     const client = algoliasearch(window.searchConfig.appId, window.searchConfig.apiKey);
     const index = client.initIndex(window.searchConfig.indexName);
-
     const filterResults = (hits, filterPath) => {
       if (!filterPath || filterPath === '/') return hits;
       const regex = new RegExp(filterPath);
       return hits.filter(hit => regex.test(hit.url));
     };
-
     const displayResults = hits => {
       const $resultList = $("<ul>").addClass("search-result-list");
       if (hits.length === 0) {
@@ -41,15 +39,12 @@ utils.jq(() => {
     const handleInput = debounce(() => {
       const query = $inputArea.val().trim();
       const filterPath = $inputArea.data('filter');
-
       if (query.length <= 0) {
         $searchWrapper.attr('searching', 'false');
         $resultArea.empty();
         return;
       }
-
       $searchWrapper.attr('searching', 'true');
-
       index.search(query, {
         hitsPerPage: window.searchConfig.hitsPerPage,
         attributesToHighlight: ['content'],
@@ -63,7 +58,6 @@ utils.jq(() => {
     }, 300);
 
     $inputArea.on("input", handleInput);
-
     $inputArea.on("keydown", e => {
       if (e.which == 13) e.preventDefault();
     });
@@ -75,17 +69,25 @@ utils.jq(() => {
     });
 
     observer.observe($resultArea[0], { childList: true });
-
     const toggleSearch = (show) => {
       const method = show ? 'fadeIn' : 'fadeOut';
       $searchWrapper.stop(true, true)[method](300);
       $searchMask.stop(true, true)[method](300);
-      if (show) $inputArea.focus();
+      if (show) {
+        $inputArea.focus();
+      } else {
+        clearSearch();
+      }
+    };
+    const clearSearch = () => {
+      $inputArea.val('');
+      $resultArea.html('');
     };
 
     $("#search-button a").on("click", () => toggleSearch(true));
     $searchMask.on("click", () => toggleSearch(false));
     $("#search-close").on("click", () => toggleSearch(false));
+    $("#search-clear").on("click", clearSearch);
   });
 });
 

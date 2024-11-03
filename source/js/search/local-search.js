@@ -117,7 +117,7 @@ utils.jq(() => {
     if ($inputArea.length == 0) {
       return;
     }
-    const $resultArea = document.querySelector("div#search-result");
+    const $resultArea = $("#search-result");
     $inputArea.focus(function() {
       let path = ctx.search.path;
       if (path.startsWith('/')) {
@@ -143,25 +143,27 @@ utils.jq(() => {
         }
       }
     });
-    observer.observe($resultArea, { childList: true });
+    observer.observe($resultArea[0], { childList: true });
 
-    const $searchButton = $("#search-button a");
     const $searchWrapper = $("#search-wrapper");
     const $searchMask = $("#search-mask");
-
     const toggleSearch = (show) => {
       const method = show ? 'fadeIn' : 'fadeOut';
       $searchWrapper.stop(true, true)[method](300);
       $searchMask.stop(true, true)[method](300);
-      if (show) $inputArea.focus();
+      if (show) {
+        $inputArea.focus();
+      } else {
+        clearSearch();
+      }
     };
-
-    $searchButton.on("click", () => toggleSearch(true));
+    const clearSearch = () => {
+      $inputArea.val('');
+      $resultArea.html('');
+    };
+    $("#search-button a").on("click", () => toggleSearch(true));
     $searchMask.on("click", () => toggleSearch(false));
-
-    const $closeButton = $("#search-close");
-    if ($closeButton.length) {
-      $closeButton.on("click", () => toggleSearch(false));
-    }
+    $("#search-close").on("click", () => toggleSearch(false));
+    $("#search-clear").on("click", clearSearch);
   });
 });
