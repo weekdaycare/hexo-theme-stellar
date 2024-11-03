@@ -143,28 +143,23 @@ utils.jq(() => {
     });
     observer.observe($resultArea, { childList: true });
 
-    // 搜索按钮和遮罩层事件监听
-    const searchButton = document.querySelector("#search-button a");
-    const searchWrapper = document.getElementById("search-wrapper");
-    const searchMask = document.getElementById("search-mask");
+    const $searchButton = $("#search-button a");
+    const $searchWrapper = $("#search-wrapper");
+    const $searchMask = $("#search-mask");
 
-    searchButton.addEventListener("click", function() {
-      searchWrapper.style.display = "block";
-      searchMask.style.display = "block";
-      $inputArea.focus();
-    });
+    const toggleSearch = (show) => {
+      const method = show ? 'fadeIn' : 'fadeOut';
+      $searchWrapper.stop(true, true)[method](300);
+      $searchMask.stop(true, true)[method](300);
+      if (show) $inputArea.focus();
+    };
 
-    searchMask.addEventListener("click", function() {
-      searchWrapper.style.display = "none";
-      searchMask.style.display = "none";
-    });
+    $searchButton.on("click", () => toggleSearch(true));
+    $searchMask.on("click", () => toggleSearch(false));
 
-    const closeButton = document.querySelector("#search-close");
-    if (closeButton) {
-      closeButton.addEventListener("click", function() {
-        searchWrapper.style.display = "none";
-        searchMask.style.display = "none";
-      });
+    const $closeButton = $("#search-close");
+    if ($closeButton.length) {
+      $closeButton.on("click", () => toggleSearch(false));
     }
-  })
+  });
 });

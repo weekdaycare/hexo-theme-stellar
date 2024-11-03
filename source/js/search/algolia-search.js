@@ -77,8 +77,9 @@ utils.jq(() => {
     observer.observe($resultArea[0], { childList: true });
 
     const toggleSearch = (show) => {
-      $searchWrapper.toggle(show);
-      $searchMask.toggle(show);
+      const method = show ? 'fadeIn' : 'fadeOut';
+      $searchWrapper.stop(true, true)[method](300);
+      $searchMask.stop(true, true)[method](300);
       if (show) $inputArea.focus();
     };
 
