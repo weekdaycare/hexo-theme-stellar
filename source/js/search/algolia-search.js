@@ -1,23 +1,21 @@
 utils.jq(() => {
   $(function () {
     const $inputArea = $("input#search-input");
-    if ($inputArea.length === 0) {
-      return;
-    }
+    if ($inputArea.length === 0) return;
 
     const $resultArea = $("#search-result");
     const $searchWrapper = $("#search-wrapper");
-    const $searchMask = $("#search-mask"); // 添加遮罩层的选择器
+    const $searchMask = $("#search-mask");
     const client = algoliasearch(window.searchConfig.appId, window.searchConfig.apiKey);
     const index = client.initIndex(window.searchConfig.indexName);
 
-    function filterResults(hits, filterPath) {
+    const filterResults = (hits, filterPath) => {
       if (!filterPath || filterPath === '/') return hits;
       const regex = new RegExp(filterPath);
       return hits.filter(hit => regex.test(hit.url));
-    }
+    };
 
-    function displayResults(hits) {
+    const displayResults = hits => {
       const $resultList = $("<ul>").addClass("search-result-list");
       if (hits.length === 0) {
         $searchWrapper.addClass('noresult');
@@ -26,20 +24,22 @@ utils.jq(() => {
         hits.forEach(hit => {
           const contentSnippet = hit._snippetResult.content.value;
           const title = hit.hierarchy.lvl1 || 'Untitled';
-          const $item = $("<li>").html(`
-            <a href="${hit.url}">
-              <span class='search-result-title'>${title}</span>
-              <p class="search-result-content">${contentSnippet}</p>
-            </a>
+          const $item = $(`
+            <li>
+              <a href="${hit.url}">
+                <span class='search-result-title'>${title}</span>
+                <p class="search-result-content">${contentSnippet}</p>
+              </a>
+            </li>
           `);
           $resultList.append($item);
         });
       }
       $resultArea.html($resultList);
-    }
+    };
 
-    $inputArea.on("input", function() {
-      const query = $(this).val().trim();
+    const handleInput = debounce(() => {
+      const query = $inputArea.val().trim();
       const filterPath = $inputArea.data('filter');
 
       if (query.length <= 0) {
@@ -57,48 +57,42 @@ utils.jq(() => {
         highlightPreTag: '<span class="search-keyword">',
         highlightPostTag: '</span>',
         restrictSearchableAttributes: ['content']
-      }).then(function(responses) {
+      }).then(responses => {
         displayResults(filterResults(responses.hits, filterPath));
       });
+    }, 300);
+
+    $inputArea.on("input", handleInput);
+
+    $inputArea.on("keydown", e => {
+      if (e.which == 13) e.preventDefault();
     });
 
-    $inputArea.on("keydown", function(e) {
-      if (e.which == 13) {
-        e.preventDefault();
-      }
-    });
-
-    const observer = new MutationObserver(function(mutationsList) {
+    const observer = new MutationObserver(mutationsList => {
       if (mutationsList.length === 1) {
-        if (mutationsList[0].addedNodes.length) {
-          $searchWrapper.removeClass('noresult');
-        } else if (mutationsList[0].removedNodes.length) {
-          $searchWrapper.addClass('noresult');
-        }
+        $searchWrapper.toggleClass('noresult', !mutationsList[0].addedNodes.length);
       }
     });
 
     observer.observe($resultArea[0], { childList: true });
 
-    // 处理搜索框的显示与隐藏
-    const searchButton = $("#search-button a");
-    searchButton.on("click", function() {
-      $searchWrapper.show();
-      $searchMask.show(); // 显示遮罩层
-      $inputArea.focus(); // 聚焦到输入框
-    });
+    const toggleSearch = (show) => {
+      $searchWrapper.toggle(show);
+      $searchMask.toggle(show);
+      if (show) $inputArea.focus();
+    };
 
-    $searchMask.on("click", function() {
-      $searchWrapper.hide();
-      $searchMask.hide(); // 隐藏遮罩层
-    });
-
-    const closeButton = $("#search-close");
-    if (closeButton.length) {
-      closeButton.on("click", function() {
-        $searchWrapper.hide();
-        $searchMask.hide(); // 隐藏遮罩层
-      });
-    }
-  })
+    $("#search-button a").on("click", () => toggleSearch(true));
+    $searchMask.on("click", () => toggleSearch(false));
+    $("#search-close").on("click", () => toggleSearch(false));
+  });
 });
+
+// 防抖函数
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
