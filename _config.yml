@@ -383,6 +383,11 @@ tag_plugins:
   # {% image %}
   image:
     fancybox: false # true, false
+  # {% live %}
+  live:
+    effect: live # live/loop/exposure/bounce
+    preload: true # 是否在用户开始播放之前下载
+    style: full # full/hint/loop
   # {% copy xxx %}
   copy:
     toast: 复制成功
@@ -476,6 +481,8 @@ data_services:
   # 其他类
   webinfo:
     js: /js/services/webinfo.js
+  live:
+    js: https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js
 
 # 扩展插件接入方法：(插件名下面用 #plugin# 代替)
 # 1. 在这里增加 #plugin# 配置，至少赢含有 enable 字段，默认为空（不启用）
