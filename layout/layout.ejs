@@ -76,7 +76,9 @@ if (theme.style.prefers_theme === 'auto') {
       html += `</aside>`
       html += partial('_partial/menubtn')
     html += `</div>`
-    html += partial('_partial/search', { item: search })
+    if (theme.search.services) {
+      html += partial('_partial/search', { item: search })      
+    }
     html += `<div class="scripts">`
       html += partial('_partial/scripts')
     html += `</div>`

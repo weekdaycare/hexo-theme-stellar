@@ -69,11 +69,13 @@ function layoutDiv() {
     let url = md_link(logo.title)
     el += layoutTitle(main, url, md_text(logo.subtitle))
   }
-  el += `<div id="search-button">`;
-  el += `<a class="search-button" onclick="sidebar.dismiss()">`;
-  el += icon('default:search');
-  el += '</a>';
-  el += '</div>';
+  if (theme.search.services) {
+    el += `<div id="search-button">`;
+    el += `<a class="search-button" onclick="sidebar.dismiss()">`;
+    el += icon('default:search');
+    el += '</a>';
+    el += '</div>';    
+  }
   el += `</div>`
   el += '</header>'
   return el
