@@ -2,7 +2,7 @@
  * live.js v1.0 | https://github.com/weekdaycare/hexo-theme-stellar/
  * 格式与官方标签插件一致使用空格分隔，中括号内的是可选参数（中括号不需要写出来）
  *
- * {% live [alt] photo:url video:url [effect:live/loop/exposure/bounce] [style:full/hint/loop] [preload:boolean] %}
+ * {% live [alt] photo:url video:url [width:width] [height:height] [effect:live/loop/exposure/bounce] [style:full/hint/loop] [preload:boolean] %}
  *
  */
 
