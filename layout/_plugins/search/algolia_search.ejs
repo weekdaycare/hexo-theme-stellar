@@ -4,9 +4,9 @@
       appId: '<%- conf.appId %>', 
       apiKey: '<%- conf.apiKey %>', 
       indexName: '<%- conf.indexName %>', 
+      js: '<%- conf.js %>',
       hitsPerPage: 30, 
     };
-    utils.js(`<%- conf.js %>`, { defer: true });
     utils.js('/js/search/algolia-search.js', { defer: true });
   });
 </script>
