@@ -8,7 +8,7 @@ if (page.title && page.wiki) {
 
 // 获取 swiper 文章
 var swiperPosts = site.posts.toArray().filter(function(post) {
-  return post.swiper_index >= 0;
+  return Number.isInteger(post.swiper_index) && post.swiper_index >= 0;
 }).sort(function(a, b) {
   return b.swiper_index - a.swiper_index;
 });
