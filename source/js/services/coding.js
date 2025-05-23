@@ -13,7 +13,7 @@ utils.jq(() => {
           src += '&lang=' + lang;
         }
         if (css && !cssLoaded) {
-          utils.css('https://jsd.hzchu.top/gh/thun888/asstes@master/files/pygments-css/default.css');
+          utils.css('https://cdn.jsdelivr.net/gh/thun888/assets@master/files/pygments-css/default.css');
           cssLoaded = true;
         }
         utils.request(el, src, function(data) {
