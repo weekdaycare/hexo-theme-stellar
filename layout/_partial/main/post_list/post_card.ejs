@@ -87,9 +87,10 @@ function div_default() {
         });
       }
       if (cats.length > 0) {
-        let cat = cats.shift();
-        el += `<a class="cap breadcrumb" ${category_color(cat)} href="/categories/${cat}/">`;
-        el += `<span>${cat}</span>`;
+        let str = cats.join(' / ');
+        let lastCat = cats.pop();
+        el += `<a class="cap breadcrumb" ${category_color(lastCat)} href="/categories/${lastCat}/">`;
+        el += `<span>${str}</span>`
         el += '</a>';
       }
     }

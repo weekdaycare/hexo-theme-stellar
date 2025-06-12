@@ -23,11 +23,22 @@
 .post-list .post-card
   display: block
   margin: 1rem 0
-  border-radius: $border-card
+  border-radius: $border-card-l
   background: var(--card)
   border: 1px solid var(--block-border)
   overflow: hidden
   position: relative
+  --img-br: 100%
+  --img-sat: 100%
+  --blur-px: 1em
+  --blur-sat: 120%
+  &:hover
+    --img-br: 75%
+    --img-sat: 120%
+    --blur-sat: 200%
+  img
+    filter: brightness(var(--img-br)) saturate(var(--img-sat))
+    trans1 all
   .excerpt
     margin: 0.75rem 0
     @media screen and (max-width: $device-mobile)
